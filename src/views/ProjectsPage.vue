@@ -3,7 +3,9 @@
     <h1>Nos Bougies Artisanales</h1>
     <ul class="products-list">
       <li v-for="(candle, index) in candles" :key="index">
-        <img :src="candle.image" :alt="candle.name" />
+        <div class="image-wrapper">
+          <img :src="candle.image" :alt="candle.name" />
+        </div>
         <h2>{{ candle.name }}</h2>
         <p>{{ candle.description }}</p>
       </li>
@@ -32,11 +34,18 @@ export default {
 </script>
 
 <style scoped>
+.products {
+  text-align: center;
+  padding: 2rem;
+}
+
 .products-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
   list-style: none;
+  padding: 0;
+  margin: 2rem 0;
 }
 
 .products-list li {
@@ -44,15 +53,28 @@ export default {
   padding: 1rem;
   border-radius: 12px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-wrapper {
+  width: 100%;
+  max-width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
 }
 
 .products-list img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   border-radius: 8px;
 }
 
-/* Appliquer la couleur de texte #4d4d4d */
 h1, h2, p {
   color: #4d4d4d;
 }
